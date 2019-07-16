@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>11111</h2>
     <!-- <Loading v-if="cinemaFlag" /> -->
     <!-- 电影列表之正在热映 -->
     <div class="film-list">
@@ -28,7 +27,6 @@
               <span class="label">分钟</span>
             </div>
           </div>
-
           <div class="film-buy">购票</div>
         </li>
       </ul>
@@ -38,9 +36,9 @@
 </template>
 
 <script>
-import {getMovieNow} from 'api/movie'
+import {getMovieNow} from 'api/movie';
 export default {
-  name:'MovieNow',
+  name:'nowPlaying',
     async created(){
         let data = await getMovieNow(440300, 1);
         console.log(data);

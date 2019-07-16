@@ -8,31 +8,39 @@
         <!-- 轮播图 -->
         
         <!-- 导航 -->
-
+        <MovieNav  @showToggle='showListToggle'/>
         <!-- 电影列表之正在热映 -->
-        <MovieNow v-if="show" />
+        <NowPlaying v-if="show" />
         
         <!-- 电影列表之即将上映 -->
-        <MovieWill v-if="!show"/>
+        <ComingSoon v-if="!show"/>
 
         <router-view />
     </div>
 </template>
 
 <script>
-import MovieNow from 'components/movie/movieNow.vue'
-import MovieWill from 'components/movie/movieWill.vue'
+import NowPlaying from 'components/movie/nowPlaying.vue'
+import ComingSoon from 'components/movie/comingSoon.vue'
+import MovieNav from 'components/movie/movieNav.vue'
 export default {
     name:'movie',
     components:{
-      MovieNow,
-      MovieWill
+      NowPlaying,
+      ComingSoon,
+      MovieNav
       },
     data(){
         return{
           show: true,
           cityname:''
         }
+    },
+    methods:{
+      showListToggle(boolean){
+        this.show = boolean;
+        console.log(this.show)
+      }
     }
 }
 </script>
@@ -72,45 +80,6 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-/* 即将上演 */
-.nav-bas.tab-wrap {
-    position: fixed;
-    top: .44rem;
-}
-
-
-.nav-bas {
-    position: relative;
-    /* top:-10px; */
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    height:.49rem;
-    overflow-x: hidden;
-    background: #fff;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    cursor: pointer;
-}
-.nav-bas .title01{
-  width: 50%;
-  height: .49rem;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-}
-.nav-bas .title01 p{
-  line-height: .47rem;
-  color: #191a1b;
-  font-size: .16rem;
-}
-.nav-bas .title01 .active{
-  color: #ff5f16;
-  border-bottom: 2px#ff5f16 solid;
 }
 
 

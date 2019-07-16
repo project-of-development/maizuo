@@ -1,16 +1,11 @@
 <template>
-  <BScroll ref="bscroll">
-<template>
   <div>
     <!-- 电影列表之即将上映 -->
     <div class="film-list" >
-      <div class="loading" >
-            <i class="fa fa-spinner fa-pulse"></i>
-          </div>
       <ul>
-        <li @click="backmovie()">
+        <li>
           <div class="film-img">
-            <img :src="'item.poster'" alt="#" />
+            <img alt="#" />
           </div>
 
           <div class="film-text">
@@ -39,21 +34,14 @@
       <!-- <p class="no-more">我是有底线的，妹妹</p> -->
   </div>
 </template>
-</BScroll>
-</template>
 
 <script>
 import { getMovieComm } from "api/movie";
 export default {
-  name: "movieWill",
+  name: "comingSoon",
   async created() {
     let data = await getMovieComm(440300, 1);
-    if (data) {
-      this.cinemaFlag = false;
-    } else {
-      this.cinemaFlag = true;
-    }
-    this.movieList = data.data.films;
+    console.log(data)
   },
   data() {
     return {

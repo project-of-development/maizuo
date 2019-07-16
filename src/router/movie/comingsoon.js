@@ -1,6 +1,6 @@
 export default {
-    path: "/movie/nowPlaying",
+    path: "/movie/comingSoon",
     component: () =>
         import ("views/movie"),
-    name: "nowPlaying"
+    name: "comingSoon"
 }

@@ -14,7 +14,7 @@ export default {
     data(){
         return {
             span:['电影','影院','特惠','我的'],
-            item1:['/movie','/cinemas','/active','/mine'],
+            item1:['/movie','/cinemas','/active','/center'],
             className:['iconfont icondianying','iconfont iconyingyuana','iconfont iconyouhui','iconfont iconwode'],
             selectIndex:0
         }

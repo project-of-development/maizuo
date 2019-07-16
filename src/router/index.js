@@ -4,16 +4,18 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import center from './center'
-import movie from './movie'
+import nowPlaying from './movie'
+import comingSoon from './movie/comingsoon.js'
 import cinema from './cinema'
 export default new Router({
     mode: 'hash',
     routes: [{
             path: '/',
-            redirect: "/movie"
+            redirect: "/movie/nowPlaying"
         },
         center,
-        movie,
-        cinema
+        nowPlaying,
+        cinema,
+        comingSoon
     ]
 })
