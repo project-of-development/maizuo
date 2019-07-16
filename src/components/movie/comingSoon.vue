@@ -3,15 +3,15 @@
     <!-- 电影列表之即将上映 -->
     <div class="film-list" >
       <ul>
-        <li>
+        <li v-for="(item,index) in film" :key="index">
           <div class="film-img">
-            <img alt="#" />
+            <img :src='item.poster' alt="#" />
           </div>
 
           <div class="film-text">
             <div class="film-name">
-              <span class="name"></span>
-              <span class="item"></span>
+              <span class="name">{{item.name}}</span>
+              <span class="item">{{item.item.name}}</span>
             </div>
             <div class="film-grade">
               <span class="label"></span>
@@ -23,7 +23,7 @@
             <div class="film-time">
               <span
                 class="label"
-              >上映日期：日</span>
+              >上映日期：{{getWeek(timestampToTime(item.premiereAt).Y+'-'+timestampToTime(item.premiereAt).M+'-'+timestampToTime(item.premiereAt).D)}} {{timestampToTime(item.premiereAt).M}}月{{timestampToTime(item.premiereAt).D}}日</span>
             </div>
           </div>
 
@@ -40,15 +40,17 @@ import { getMovieComm } from "api/movie";
 export default {
   name: "comingSoon",
   async created() {
-    let data = await getMovieComm(440300, 1);
-    console.log(data)
+    let response = await getMovieComm(440300, 1);
+    console.log(response);
+    this.film = response.data.films
   },
   data() {
     return {
       movieList: [],
       cinemaFlag: true,
        scrollLoading: false,
-       page:1
+       page:1,
+       film:[]
     };
   },
  mounted() {

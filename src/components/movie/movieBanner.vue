@@ -18,7 +18,7 @@ export default {
     name: "MovieBanner",
     async created() {
     let data = await getMoviebanner(440300);
-    console.log(data)
+    // console.log(data)
     this.bannerList = data.data;
   },
   data() {

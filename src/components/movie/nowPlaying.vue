@@ -7,24 +7,24 @@
         <i class="fa fa-spinner fa-pulse"></i>
       </div>
       <ul>
-        <li>
+        <li v-for="(item, index) in film" :key='index'>
           <div class="film-img">
-            <img alt="#" />
+            <img :src="item.poster" alt="#" />
           </div>
           <div class="film-text">
             <div class="film-name">
-              <span class="name"></span>
-              <span class="item"></span>
+              <span class="name">{{item.name}}</span>
+              <span class="item">{{item.item.name}}</span>
             </div>
             <div class="film-grade">
               <span class="label">观众评分</span>
-              <span class="grade"></span>
+              <span class="grade">{{item.grade}}</span>
             </div>
             <div class="film-actors info-clo">
-              <span class="label">主演:</span>
+              <span class="label">主演:{{}}</span>
             </div>
             <div class="film-time">
-              <span class="label">分钟</span>
+              <span class="label">{{item.nation}} | {{item.runtime}}分钟</span>
             </div>
           </div>
           <div class="film-buy">购票</div>
@@ -40,8 +40,10 @@ import {getMovieNow} from 'api/movie';
 export default {
   name:'nowPlaying',
     async created(){
-        let data = await getMovieNow(440300, 1);
-        console.log(data);
+        let response = await getMovieNow(440300, 1);
+        // console.log(response);
+        this.film = response.data.films;
+        // console.log(this.film);
     },
     data(){
       return{
@@ -49,7 +51,8 @@ export default {
         active:true,
         flg:true,//标题
         scrollLoading: false,
-        cinemaFlag:true
+        cinemaFlag:true,
+        film:[]
       }
     }
 }
