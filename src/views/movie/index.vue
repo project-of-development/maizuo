@@ -6,7 +6,7 @@
           <i class="iconfont iconiconfontarrows1" style="font-size: 10px;  margin-left:4px;"></i>
         </div>
         <!-- 轮播图 -->
-        
+        <MovieBanner />
         <!-- 导航 -->
         <MovieNav  @showToggle='showListToggle'/>
         <!-- 电影列表之正在热映 -->
@@ -23,12 +23,14 @@
 import NowPlaying from 'components/movie/nowPlaying.vue'
 import ComingSoon from 'components/movie/comingSoon.vue'
 import MovieNav from 'components/movie/movieNav.vue'
+import MovieBanner from 'components/movie/movieBanner.vue'
 export default {
     name:'movie',
     components:{
       NowPlaying,
       ComingSoon,
-      MovieNav
+      MovieNav,
+      MovieBanner
       },
     data(){
         return{

@@ -23,3 +23,10 @@ export const getMovieComm = (cityId, page) => http("get", "/gateway?cityId=" + c
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"156177921210492605106789"}'
     }
 })
+
+export const getMoviebanner = (cityId) => http("get", "/gateway?type=2&cityId=" + cityId + "&k=9200606", {
+    headers: {
+        'X-Host': 'mall.cfg.common-banner',
+        'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"156177921210492605106789"}'
+    }
+})
