@@ -1,10 +1,10 @@
 <template>
     <div class="home">
         <!-- cityselect -->
-        <div class="city-fixed"  @click="backmovie()">
+        <router-link class="city-fixed" to='/city' tag="div">
           <span>{{cityname}}</span>
           <i class="iconfont iconiconfontarrows1" style="font-size: 10px;  margin-left:4px;"></i>
-        </div>
+        </router-link>
         <!-- 轮播图 -->
         <MovieBanner />
         <!-- 导航 -->
@@ -35,13 +35,16 @@ export default {
     data(){
         return{
           show: true,
-          cityname:''
+          cityname:'深圳'
         }
     },
     methods:{
       showListToggle(boolean){
         this.show = boolean;
         console.log(this.show)
+      },
+      backmovie(){
+
       }
     }
 }

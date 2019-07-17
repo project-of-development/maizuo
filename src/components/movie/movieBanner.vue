@@ -13,6 +13,18 @@
 
 
 <script>
+var mySwiper = new Swiper('.swiper-container', {
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+    waitForTransition: false,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable :true,
+  },
+})
 import { getMoviebanner } from "api/movie";
 export default {
     name: "MovieBanner",
@@ -26,10 +38,7 @@ export default {
       bannerList: []
     };
   }
-};
-var mySwiper = new Swiper('.swiper-container', {
-    autoplay:true
-});
+}
 </script>
 
 <style scoped>

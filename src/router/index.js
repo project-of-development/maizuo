@@ -7,6 +7,7 @@ import center from './center'
 import nowPlaying from './movie'
 import comingSoon from './movie/comingsoon.js'
 import cinema from './cinema'
+import city from './citylist'
 export default new Router({
     mode: 'hash',
     routes: [{
@@ -16,6 +17,7 @@ export default new Router({
         center,
         nowPlaying,
         cinema,
-        comingSoon
+        comingSoon,
+        city
     ]
 })
