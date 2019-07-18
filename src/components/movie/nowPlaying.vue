@@ -21,7 +21,7 @@
               <span class="grade">{{item.grade}}</span>
             </div>
             <div class="film-actors info-clo">
-              <span class="label">主演:{{}}</span>
+              <span class="label">主演:{{actorsList(item.actors)}}</span>
             </div>
             <div class="film-time">
               <span class="label">{{item.nation}} | {{item.runtime}}分钟</span>
@@ -53,6 +53,19 @@ export default {
         scrollLoading: false,
         cinemaFlag:true,
         film:[]
+      }
+    },
+    methods:{
+      actorsList(list){
+        let arr = [];
+        if(list){
+          arr = list.map(items=>{
+            return items.name;
+          });
+        }else{
+          return "暂无主演"
+        }
+        return arr.join(' ');
       }
     }
 }

@@ -18,7 +18,7 @@
               <span class="grade"></span>
             </div>
             <div class="film-actors info-clo">
-              <span class="label">主演:</span>
+              <span class="label">主演:{{actorsList(item.actors)}}</span>
             </div>
             <div class="film-time">
               <span
@@ -41,7 +41,6 @@ export default {
   name: "comingSoon",
   async created() {
     let response = await getMovieComm(440300, 1);
-    console.log(response);
     this.film = response.data.films
   },
   data() {
@@ -58,7 +57,17 @@ export default {
    
   },
   methods: {
-    
+    actorsList(list){
+      let arr = [];
+      if(list){
+        arr = list.map(item =>{
+        return item.name;
+      });
+      }else{
+        return "暂无主演"
+      }
+      return arr.join(' ');
+    }
   }
 };
 </script>

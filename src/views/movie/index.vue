@@ -41,7 +41,6 @@ export default {
     methods:{
       showListToggle(boolean){
         this.show = boolean;
-        console.log(this.show)
       },
       backmovie(){
 
