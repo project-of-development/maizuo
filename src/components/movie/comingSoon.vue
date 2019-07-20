@@ -37,19 +37,33 @@
 
 <script>
 import { getMovieComm } from "api/movie";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "comingSoon",
+  computed:{
+    ...mapState({
+      cityId:state=>state.citylist.cityId
+    })
+  },
   async created() {
-    let response = await getMovieComm(440300, 1);
-    this.film = response.data.films
+    let response = await getMovieComm(this.cityId, this.page);
+    this.cityId = cityId;
+    sessionStorage.setItem('movieList', JSON.stringify(response.data.films))
+    if(response){
+      this.cinemaFlag = false;
+    }else{
+      this.cinemaFlag = true;
+    };
+    this.film = response.data.films;
   },
   data() {
     return {
       movieList: [],
       cinemaFlag: true,
-       scrollLoading: false,
-       page:1,
-       film:[]
+      scrollLoading: false,
+      page:1,
+      film:[],
+      cityId: null
     };
   },
  mounted() {

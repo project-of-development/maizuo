@@ -2,16 +2,16 @@
     <div>
         <div class="list-nav">
             <ul>
-                <li v-for="(item, index) in navs" :key="index">
+                <li v-for="(item, index) in navs" :key="index" @click="handleClick(index)">
                     <span>{{item.title}}</span>
                     <i class="iconfont" v-html="item.iconfont"></i>
                 </li>
             </ul>
         </div>
-        <div class="list-mask" v-show="falg">
+        <div class="list-mask" v-show="flag">
             <div class="list-item1" v-if="ret[0]">
                 <ul>
-                    <li v-for="(item,indexs) in list" :key="indexs" @click="handlecity(item)">{{item}}</li>
+                    <li v-for="(item,indexs) in list" :key="indexs" @click="handleChoose(item)">{{item}}</li>
                 </ul>
             </div>
             <div class="list-item2" v-if="ret[1]">
@@ -31,8 +31,21 @@
 </template>
 
 <script>
+import {getmove} from "api/cinema";
+import { mapState, mapMutations } from "vuex";
 export default {
     name:'MovieMark',
+    async created(){
+        let response = await getmove(this.cityId);
+        for(var i=0;i<response.data.cinemas.length;i++){
+            if(this.list.indexOf(response.data.cinemas[i].districtName)==-1){
+                this.list.push(response.data.cinemas[i].districtName)
+            }
+        }
+        
+        this.$emit("handle",response)
+        // this.data = this.title;
+    },
     data(){
         return{
             navs:[
@@ -40,23 +53,85 @@ export default {
                     title:'全城',
                     iconfont:'&#xe625;'
                 },
-                                {
+                {
                     title:'APP订票',
                     iconfont:'&#xe625;'
                 },
-                                {
+                {
                     title:'最近去过',
                     iconfont:'&#xe625;'
                 }
             ],
-            list:[]
+            list:[],
+            flag:false,
+            ret:[0,0,0],
+            case:'0',
+            list:[],
+            // data:"",
+        }
+    },
+    methods:{
+        ...mapMutations({
+            
+        }),
+        handleClick(num){
+            this.flag = true
+            this.ret.forEach((value, index, array)=>{
+                this.ret.splice(index, 1 , 0)
+            })
+            this.ret[num] = !this.ret[num]
+            this.$forceUpdate()
+        },
+        handleChoose(item){
+            this.ret.map((value, index, array)=>{
+                this.ret.splice(index, 1, 0)
+            })
+            this.flag = false;
+            this.$observer.$emit('handleChoose',city);
         }
     }
 }
 </script>
 
 <style scoped>
- .list-mask{
+#list{
+    height: 100%;
+}
+.list-nav{
+    width: 100%;
+    height: .49rem;
+    background: #fff;
+    position: fixed;
+    top:.44rem;
+    left: 0;
+    z-index: 55;
+}
+.list-nav>ul{
+    width:100%;
+    height: 100%;
+    display: flex;
+}
+.list-nav>ul>li{
+    height: .49rem;
+    width:33.333%;
+    text-align: center;
+    line-height: .49rem;
+
+}
+.list-nav>ul>li>span{
+    font-size: .14rem;
+    color:#191a1b;
+}
+.list-nav>ul>li>i{
+    font-size: .08rem;
+    margin: .03rem;
+}   
+.list-li{
+    position: absolute;
+    top: 0.93rem;
+    left: 0;
+} 
+.list-mask{
     height: 100%;
     width: 100%;
     position: fixed;

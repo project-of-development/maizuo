@@ -24,8 +24,7 @@ export default {
   },
   methods: {
     toggle(boolean){
-        this.$emit('showToggle', boolean),
-        console.log('done')
+      this.$emit('showToggle', boolean)
     }
   }
 };

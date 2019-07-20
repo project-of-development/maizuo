@@ -3,7 +3,7 @@
     <HeaderCom title="影院">
       <template v-slot:left>
         <div class="left" @click="handleBack()">
-          <span>{{cityname}}</span>
+          <span>深圳</span>
           <i class="iconfont iconiconfontarrows1"></i>
         </div>
       </template>
@@ -16,15 +16,17 @@
     </HeaderCom>
 
     <MovieMark/>
+    <MovieBody/>
   </div>
 </template>
 
 <script>
 import HeaderCom from "common/header";
 import MovieMark from 'components/cinema/moviemask.vue'
+import MovieBody from 'components/cinema/moviebody.vue'
 export default {
   name: "cinema",
-  components: { HeaderCom, MovieMark }
+  components: { HeaderCom, MovieMark, MovieBody }
 };
 </script>
 

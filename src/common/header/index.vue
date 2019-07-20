@@ -1,10 +1,12 @@
 <template>
-    <div class="header">
-        <slot name="left" ></slot>
-        <div class="title">
-            <div>{{title}}</div>
+    <div>
+        <div class="header">
+            <slot name="left" ></slot>
+            <div class="title">
+                <div>{{title}}</div>
+            </div>
+            <slot name="right"></slot>
         </div>
-        <slot name="right"></slot>
     </div>
 </template>
 
