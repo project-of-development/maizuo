@@ -7,7 +7,8 @@
         <i class="fa fa-spinner fa-pulse"></i>
       </div>
       <ul>
-        <li v-for="(item, index) in film" :key='index'>
+        <li v-for="(item, index) in film" :key='index'
+        @click="toFilm(item.filmId)">
           <div class="film-img">
             <img :src="item.poster" alt="#" />
           </div>
@@ -37,13 +38,12 @@
 
 <script>
 import {getMovieNow} from 'api/movie';
+import { mapState, mapMutations } from "vuex";
 export default {
   name:'nowPlaying',
     async created(){
-        let response = await getMovieNow(440300, 1);
-        // console.log(response);
+        let response = await getMovieNow(this.cityId, this.page);
         this.film = response.data.films;
-        // console.log(this.film);
     },
     data(){
       return{
@@ -52,8 +52,14 @@ export default {
         flg:true,//标题
         scrollLoading: false,
         cinemaFlag:true,
-        film:[]
+        film:[],
+        page:1
       }
+    },
+    computed:{
+      ...mapState({
+        cityId: store=>store.citylist.cityId
+      })
     },
     methods:{
       actorsList(list){
@@ -66,7 +72,10 @@ export default {
           return "暂无主演"
         }
         return arr.join(' ');
-      }
+      },
+      ...mapMutations({
+        toFilm:'citylist/toFilm'
+      })
     }
 }
 </script>

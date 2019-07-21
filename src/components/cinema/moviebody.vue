@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <div class="list-li" v-if="!cimemaFlag">
+    <div class="list-li" v-if="!cinemaFlag">
       <!-- <div class="loading" v-if="scrollLoading"> -->
-        <i class="fa fa-spinner fa-pulse"></i>
-      </div>
+        <!-- <i class="fa fa-spinner fa-pulse"></i> -->
+      <!-- </div> -->
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="savecinemaId(item.cinemaId)">
           <div class="site">
@@ -20,14 +20,14 @@
         </li>
       </ul>
     </div>
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>
 import { getmove } from "api/cinema";
 import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
-  name: "movieBody",
+  name: "MovieBody",
   props:{
     title: {
       type: String,
@@ -75,12 +75,12 @@ export default {
     }
   },
   mounted() {
-    this.$refs.bscroll.handleScrollStart(() => {
-      this.srcollLoading = true;
-    });
-    this.$refs.bscroll.handleScrollEnd(() => {
-      this.scrollLoading = false;
-    });
+    // this.$refs.bscroll.handleScrollStart(() => {
+    //   this.srcollLoading = true;
+    // });
+    // this.$refs.bscroll.handleScrollEnd(() => {
+    //   this.scrollLoading = false;
+    // });
   },
   computed:{
     ...mapState({
@@ -94,6 +94,79 @@ export default {
 
 };
 </script>
+<style scoped>
+.no-more {
+  text-align: center;
+  margin: 15px auto;
+  color: #bdc0c5;
+}
+.loading {
+  width: 100%;
+  height: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading > i {
+  font-size: 0.4rem;
+}
+.list-li {
+  position: relative;
+  top: 0.93rem;
+  bottom: 0.5rem;
+}
+.list-li > ul {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.list-li > ul > li {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: 1px solid #ededed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
 
-<style>
+.site {
+  width: 2.8rem;
+  height: 100%;
+  overflow: hidden;
+}
+.site > p {
+  color: #191a1b;
+  font-size: 0.15rem;
+  line-height: 0.22rem;
+}
+.site > span {
+  color: #797d82;
+  display: block;
+  width: 100%;
+  font-size: 0.12rem;
+  margin-top: 0.05rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.price {
+  width: 0.7rem;
+  height: 100%;
+  text-align: right;
+}
+.price > p {
+  color: #ff6700;
+  font-size: 0.1rem;
+  line-height: 0.25rem;
+}
+.price > p > span {
+  font-size: 0.14rem;
+}
+.price > span {
+  color: #797d82;
+  font-size: 0.11rem;
+}
 </style>

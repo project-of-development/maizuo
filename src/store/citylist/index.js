@@ -4,26 +4,26 @@ const state = {
     cityName: sessionStorage.getItem('cityName') || '深圳',
     cityId: sessionStorage.getItem('cityId') || 440300,
     filmId: sessionStorage.getItem('filmId') || 4703,
-    goodsid: 'zb5MkOFQ',
+    goodsId: 'zb5MkOFQ',
     cinemaId: sessionStorage.getItem('cinemaId') || 6486,
     districtName: ''
 }
 
 const mutations = {
     cityGet(state, $event) {
+        console.log($event)
         let text = $event.currentTarget.innerText; //城市名称
         let id = $event.currentTarget.getAttribute("id"); //城市ID 
-
         state.cityName = text;
         state.cityId = id;
         sessionStorage.setItem('cityName', text);
         sessionStorage.setItem('cityId', id);
         router.back();
     },
-    backmovie(state, filmId) {
+    toFilm(state, filmId) {
         state.filmId = filmId;
         sessionStorage.setItem('filmId', filmId);
-        router.push({ name: 'moviedes' });
+        router.push({ name: 'film', params: { filmId } });
     },
     saveCinemaId(state, cinemaId) {
         state.cinemaId = cinemaId;
@@ -32,6 +32,10 @@ const mutations = {
     },
     handlecity(state, districtName) {
         state.districtName = districtName
+    },
+    getgoodslist(state, goodsId) {
+        state.goodsid = goodsId;
+        router.push({ name: 'topic', params: { goodsId } });
     }
 }
 

@@ -2,7 +2,7 @@
   <div id="list">
     <HeaderCom title="影院">
       <template v-slot:left>
-        <div class="left" @click="handleBack()">
+        <div class="left" @click="cityChoose()">
           <span>深圳</span>
           <i class="iconfont iconiconfontarrows1"></i>
         </div>
@@ -26,7 +26,12 @@ import MovieMark from 'components/cinema/moviemask.vue'
 import MovieBody from 'components/cinema/moviebody.vue'
 export default {
   name: "cinema",
-  components: { HeaderCom, MovieMark, MovieBody }
+  components: { HeaderCom, MovieMark, MovieBody },
+  methods:{
+    cityChoose(){
+      this.$router.push({name: 'city'});
+    }
+  }
 };
 </script>
 

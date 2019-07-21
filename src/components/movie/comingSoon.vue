@@ -3,7 +3,8 @@
     <!-- 电影列表之即将上映 -->
     <div class="film-list" >
       <ul>
-        <li v-for="(item,index) in film" :key="index">
+        <li v-for="(item,index) in film" :key="index"
+        @click="toFilm(item.filmId)">
           <div class="film-img">
             <img :src='item.poster' alt="#" />
           </div>
@@ -40,15 +41,13 @@ import { getMovieComm } from "api/movie";
 import { mapState, mapMutations } from "vuex";
 export default {
   name: "comingSoon",
-  computed:{
+  computed: {
     ...mapState({
-      cityId:state=>state.citylist.cityId
+      cityId: state => state.citylist.cityId
     })
   },
   async created() {
     let response = await getMovieComm(this.cityId, this.page);
-    this.cityId = cityId;
-    sessionStorage.setItem('movieList', JSON.stringify(response.data.films))
     if(response){
       this.cinemaFlag = false;
     }else{
@@ -62,8 +61,7 @@ export default {
       cinemaFlag: true,
       scrollLoading: false,
       page:1,
-      film:[],
-      cityId: null
+      film:[]
     };
   },
  mounted() {
@@ -81,7 +79,10 @@ export default {
         return "暂无主演"
       }
       return arr.join(' ');
-    }
+    },
+    ...mapMutations({
+      toFilm:'citylist/toFilm'
+    })
   }
 };
 </script>

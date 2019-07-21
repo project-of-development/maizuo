@@ -72,7 +72,7 @@ export default {
     },
     methods:{
         ...mapMutations({
-            
+            handledistrict:"citylist/handlecity"
         }),
         handleClick(num){
             this.flag = true
@@ -82,12 +82,14 @@ export default {
             this.ret[num] = !this.ret[num]
             this.$forceUpdate()
         },
-        handleChoose(item){
+        handleChoose(city){
             this.ret.map((value, index, array)=>{
                 this.ret.splice(index, 1, 0)
             })
             this.flag = false;
+            this.navs[0].title = city;
             this.$observer.$emit('handleChoose',city);
+            this.handledistrict(city);
         }
     }
 }
