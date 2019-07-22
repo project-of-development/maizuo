@@ -5,7 +5,7 @@
         <!-- <i class="fa fa-spinner fa-pulse"></i> -->
       <!-- </div> -->
       <ul>
-        <li v-for="(item,index) in list" :key="index" @click="savecinemaId(item.cinemaId)">
+        <li v-for="(item,index) in list" :key="index" @click="saveCinemaId(item.cinemaId)">
           <div class="site">
             <p>{{item.name}}</p>
             <span>{{item.address}}</span>
@@ -72,7 +72,10 @@ export default {
       }
       this.$emit("handle", data);
       this.data = this.title;
-    }
+    },
+    ...mapMutations({
+      saveCinemaId: "citylist/saveCinemaId"
+    })
   },
   mounted() {
     // this.$refs.bscroll.handleScrollStart(() => {

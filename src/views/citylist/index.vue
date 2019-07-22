@@ -201,7 +201,7 @@ export default {
       console.log(this.$refs.scroll.scrollTop);
     },
     ...mapMutations({
-      cityGet: "citylist/citytext"
+      cityGet: "citylist/cityGet"
     })
   },
   watch:{

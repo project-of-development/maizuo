@@ -11,6 +11,8 @@ import city from './citylist'
 import film from './film'
 import active from './active'
 import topic from './topic'
+import details from './details'
+import login from './login'
 export default new Router({
     mode: 'hash',
     routes: [{
@@ -24,6 +26,8 @@ export default new Router({
         city,
         film,
         active,
-        topic
+        topic,
+        details,
+        login
     ]
 })

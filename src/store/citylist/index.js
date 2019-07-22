@@ -11,7 +11,6 @@ const state = {
 
 const mutations = {
     cityGet(state, $event) {
-        console.log($event)
         let text = $event.currentTarget.innerText; //城市名称
         let id = $event.currentTarget.getAttribute("id"); //城市ID 
         state.cityName = text;

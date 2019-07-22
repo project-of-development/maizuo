@@ -20,10 +20,13 @@
 </template>
 
 <script>
+import "../../../public/css/swiper.min.css";
+import Swiper from "swiper";
 import NowPlaying from 'components/movie/nowPlaying.vue'
 import ComingSoon from 'components/movie/comingSoon.vue'
 import MovieNav from 'components/movie/movieNav.vue'
 import MovieBanner from 'components/movie/movieBanner.vue'
+import { mapState } from 'vuex'
 export default {
     name:'movie',
     components:{
@@ -35,7 +38,6 @@ export default {
     data(){
         return{
           show: true,
-          cityname:'深圳'
         }
     },
     methods:{
@@ -45,6 +47,27 @@ export default {
       backmovie(){
 
       }
+    },
+    computed:{
+      ...mapState({
+        cityname:state=>state.citylist.cityName
+      }),
+    },
+    mounted() {
+      new Swiper(".swiper-container", {
+        observer:true,
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      });
+      //监听滚动事件
+      window.addEventListener('scroll', this.handleScroll)
     }
 }
 </script>

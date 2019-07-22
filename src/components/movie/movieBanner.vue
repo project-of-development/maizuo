@@ -13,18 +13,6 @@
 
 
 <script>
-var mySwiper = new Swiper('.swiper-container', {
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-    waitForTransition: false,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
-    clickable :true,
-  },
-})
 import { getMoviebanner } from "api/movie";
 export default {
     name: "MovieBanner",
@@ -45,25 +33,9 @@ export default {
 .img-list img {
   width: 3.75rem;
   height: 2.1rem;
+ 
 }
 .swiper-container {
   background: #fff;
-}
-
-.mint-swipe-indicators {
-    position: absolute;
-    bottom: .1rem;
-    right: .1rem;
-    width: .08rem;
-    height: .08rem;
-    display: inline-block;
-    border-radius: 100%;
-    background: #000;
-    margin: 0 .03rem;
-    border: .01rem solid #fff;
-}
-.mint-swipe-indicator.is-active {
-    opacity: 1;
-    background: #fff;
 }
 </style>

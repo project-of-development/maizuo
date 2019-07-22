@@ -3,20 +3,18 @@
         <div id="mine">
         <div class="mine-header">
             <img src="../../assets/dl.png" alt="">
-            <a href="#">立即登陆</a>
+            <router-link tag='a' to='/login'>立即登陆</router-link>
         </div>
         <div class="mine-nav">
             <a href="#"><i class="iconfont iconpiaoquan1"></i><span>电影订单</span></a>
-              <a href="#"><i class="iconfont icondingdan"></i><span>商品订单</span></a>
+            <a href="#"><i class="iconfont icondingdan"></i><span>商品订单</span></a>
         </div>
         <div class="mine-list">
             <ul>
-                <router-link v-for="(item,index) in list" :key="index" to="/login" tag="li">
+                <router-link v-for="(item,index) in list" :key="index" to='/login' tag="li">
                     <i class="iconfont" v-html="item.icon"></i>
                     <span>{{item.text}}<span>{{item.money}}</span></span>
-                    
                     <i class="iconfont" v-html="item.icon2"></i>
-                    
                 </router-link>
             </ul>
         </div>
